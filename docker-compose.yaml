@@ -1,0 +1,21 @@
+# docker-compose.yaml
+version: "3.7"
+
+services:
+  go_api:
+    container_name: go_api
+    image: thisk8brd/go_api:dev
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+      - "2345:2345"
+    networks:
+      - go_api-network
+
+networks:
+  go_api-network:
+    name: go_api-network
